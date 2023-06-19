@@ -1,2 +1,4 @@
 #!/bin/bash
 python3 -m compileall $PYFILE
+PYFILEC=${PYFILE%.py}.pyc
+mv __pycache__/${PYFILE%.py}* $PYFILEC
