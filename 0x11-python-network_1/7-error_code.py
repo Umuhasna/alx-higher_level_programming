@@ -3,17 +3,14 @@
 Docs
 '''
 from sys import argv
-from requests.exceptions import HTTPError
-import requests
+from requests import get
 
 
 if __name__ == "__main__":
     url = argv[1]
 
-    try:
-        html = requests.get(url)
-
-        html.raise_for_status()
+    html = get(url)
+    if html.status_code < 400:
         print(html.text)
-    except HTTPError as e:
-        print('Error code: {}'.format(e.html.status_code))
+    else:
+        print('Error code: {}'.format(html.status_code))
